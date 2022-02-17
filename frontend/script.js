@@ -182,55 +182,47 @@ function loadEvent() {
 
     let cardElement2 = function(title, year, rate) {
         return`
-            <div class="card">
-                <h3>${title}</h1>
-                <div class="time">${year}</div>
-                <div class="rate">${rate}</div>
-            </div>
-            `;
-        }
+        <div class="card">
+            <h3>${title}</h1>
+            <div class="time">${year}</div>
+            <div class="rate">${rate}</div>
+        </div>
+        `;
+    }
 
     let renderAllCardElements = function (cardsArray) {
-        let renderCardList = "";
+        let renderCardList = `<div class="cards">`;
         for(const inComingMovie of cardsArray ){
-            renderCardList += `
+            renderCardList += cardElement2(inComingMovie.title, inComingMovie.year, inComingMovie.rate)
+        }
+    }
+            /*    renderCardList += `
             <div class="card">
                 <h3>${inComingMovie.title}</h1>
                 <div class="time">${inComingMovie.year}</div>
                 <div class="rate">${inComingMovie.rate}</div>
-            </div>
+            </div> */
             `
-        }  
+           
+        renderCardList += `</div>`
         console.log(renderCardList);    
 
         return renderCardList;
          //for ciklus minden lépcsőjénél hozzáadja a render card lsithez az adott elemet a megfelelő div cardban.
         //return-öli az elkészült  elemekkel a feltöltött card listet
-    }
+        }
 
-    /* movies.sort(function(a, b){return a.year - b.year}); */
+
 
     let newGoodMovies = [];
 
     for (const movieSend of movies) {
-/*          let neverThan2000 = false;
-        if(movieSend.year > 2000) {
-            neverThan2000 = true;
-        } */
-      /*  if (neverThan2000){
-  /*       rootElement.insertAdjacentHTML("beforeend", cardElement2(movieSend.title, movieSend.year, movieSend.rate)); */ 
-        }  
-        //let floorRate = Math.floor(movieSend.rate);
-
         if(movieSend.year > 2000 && movieSend.rate >= 8){
             newGoodMovies.push(movieSend);
-           // rootElement.insertAdjacentHTML("beforeend", cardElement2(movieSend.title, movieSend.year,(floorRate)));
-        }
+          /*  // rootElement.insertAdjacentHTML("beforeend", cardElement2(movieSend.title, movieSend.year,(floorRate)));
+        } */
 
-        
-
-        /* points.sort(function(a, b){return a - b});*/
-    }
+    } */
     newGoodMovies.sort(function(a, b){return a.year - b.year});
 
     rootElement.insertAdjacentHTML("beforeend", renderAllCardElements(newGoodMovies));
